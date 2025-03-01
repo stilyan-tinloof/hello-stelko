@@ -1,0 +1,20 @@
+{
+  "name": "hello-stelko",
+  "version": "0.0.1",
+  "description": "A simple package that says hello to Stelko",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "stelko"
+  ],
+  "author": "stelko",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  }
+}
