@@ -5,3 +5,7 @@ export type HelloStelko = {
 export type HelloStelkoWithAge = HelloStelko & {
   age: number;
 };
+
+export type HelloStelkoWithAgeAndCity = HelloStelkoWithAge & {
+  city: string;
+};
