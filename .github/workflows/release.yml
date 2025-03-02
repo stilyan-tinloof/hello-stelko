@@ -64,3 +64,11 @@ jobs:
                 "text": message,
               })
             );
+      - name: Send a Slack notification if a publish happens
+        if: steps.changesets.outputs.published == 'true'
+        id: slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: ${{steps.publishedPackages.outputs.blocks}}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
