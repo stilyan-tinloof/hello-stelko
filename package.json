@@ -10,6 +10,9 @@
     "changeset": "changeset add",
     "version": "changeset version"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "stelko"
   ],
