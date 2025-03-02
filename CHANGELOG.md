@@ -1,5 +1,11 @@
 # hello-stelko
 
+## 0.1.0
+
+### Minor Changes
+
+- 21ae888: Slack
+
 ## 0.0.3
 
 ### Patch Changes
