@@ -50,24 +50,64 @@ jobs:
         id: publishedPackages
         with:
           script: |
-            const changes = ${{steps.changesets.outputs.publishedPackages}};
-            let message = ":rocket: *New release* :rocket:\n\n\nA new release of *${{github.repository}}* was published!";
+            const changes = ${{ steps.changesets.outputs.publishedPackages  }};
+
+            let blocks = [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "🚀 New release!",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": `A new release of *<https://github.com/${repository}|${repository}>* is here! 🎉`
+                }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "🔹 *What's new?*"
+                }
+              }
+            ];
+
             if (Array.isArray(changes) && changes.length > 0) {
-              message += "\n\n";
-              changes.forEach((package) => {
-                message += `*Package:* \`${package.name}\`\n*Version:* \`${package.version}\`\n\n`;
+              changes.forEach((pkg) => {
+                blocks.push({
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": `📦 *Package:* \`${pkg.name}\`\n🔖 *Version:* \`${pkg.version}\``
+                  }
+                });
               });
             }
-            message += "Changelog :point_right: https://github.com/${{github.repository}}/releases";
-            core.setOutput("blocks",
-              JSON.stringify({
-                "text": message,
-              })
+
+            blocks.push(
+              { "type": "divider" },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": `📜 *<${changelogUrl}|View Full Changelog>*`
+                }
+              }
             );
+
+            core.setOutput("blocks", JSON.stringify({ blocks }));
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
         id: slack
-        uses: slackapi/slack-github-action@v1.25.0
+        uses: slackapi/slack-github-action@v2
         with:
           payload: ${{steps.publishedPackages.outputs.blocks}}
         env:
