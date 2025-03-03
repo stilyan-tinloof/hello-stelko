@@ -1,5 +1,11 @@
 # hello-stelko
 
+## 0.1.2
+
+### Patch Changes
+
+- 371e670: test
+
 ## 0.1.1
 
 ### Patch Changes
