@@ -103,12 +103,19 @@ jobs:
               }
             );
 
-            core.setOutput("blocks", JSON.stringify({ blocks }));
+            const payload = {
+              text: "New package release",
+              blocks: blocks
+            };
+
+            core.setOutput("blocks", JSON.stringify(payload));
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
         id: slack
         uses: slackapi/slack-github-action@v2
         with:
-          payload: ${{steps.publishedPackages.outputs.blocks}}
+          webhook-type: incoming-webhook
+          payload: |
+            ${{steps.publishedPackages.outputs.blocks}}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
