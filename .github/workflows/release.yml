@@ -65,7 +65,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": `A new release of *<https://github.com/${repository}|${repository}>* is here! 🎉`
+                  "text": `A new release of *<https://github.com/${{ github.repository }}|${{ github.repository }}>* is here! 🎉`
                 }
               },
               {
@@ -98,7 +98,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": `📜 *<${changelogUrl}|View Full Changelog>*`
+                  "text": `📜 *<https://github.com/${{ github.repository }}/releases|View Full Changelog>*`
                 }
               }
             );
