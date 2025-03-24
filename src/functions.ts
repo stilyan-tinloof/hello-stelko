@@ -6,6 +6,13 @@ import {
 
 export function helloStelko() {
   console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
+  console.log('Hello Stelko');
 }
 
 export function helloStelkoWithName({ name }: HelloStelko) {
