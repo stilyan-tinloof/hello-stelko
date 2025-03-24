@@ -1,5 +1,0 @@
----
-"hello-stelko": minor
----
-
-Minor
